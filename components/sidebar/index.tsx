@@ -3,7 +3,6 @@ import NewDocumentBtn from './_components/NewDocumentBtn'
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
