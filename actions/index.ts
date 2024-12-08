@@ -11,7 +11,7 @@ export async function createDocument(){
     const docCollectionRef=adminDb.collection("documents")//storing doc collection ref where we need to add a doc
 
     const docRef=await docCollectionRef.add({
-        title: "HELLO"
+        title: "HELLO Pakistan"
     })
 
    await adminDb.collection("user").doc(sessionClaims?.email!).collection("rooms").doc(docRef.id).set({

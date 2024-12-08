@@ -14,9 +14,9 @@ import {useCollection} from 'react-firebase-hooks/firestore';
 import { db } from '@/firebase'
 import { useEffect, useState } from 'react'
 import { RoomDocument } from '@/types'
+import SidebarOptions from './_components/SidebarOptions'
 
 const Sidebar = () => {
-
   const {user}=useUser();
   const [groupedData,setGroupedData]=useState<{owner:RoomDocument[],editor:RoomDocument[]}>({
     owner:[],
@@ -27,7 +27,8 @@ const Sidebar = () => {
     user && (
       query(collectionGroup(db,'rooms'), where('userId',"==",user.emailAddresses[0].toString()))
     ))
-    console.log("🚀 ~ Sidebar ~ error:", error)
+
+    if (error) return console.error("Ops erorr : ",error)
 
     useEffect(()=>{
       if(!data) return;
@@ -57,9 +58,26 @@ const Sidebar = () => {
       setGroupedData(grouped)
     },[data])
     
+  const RenderDocumentList=()=>{
+    return (
+    <>
+    <h2 className='text-gray-500 font-semibold text-sm'>My Documents</h2>
+    {groupedData.owner.map(doc=>(
+      <div key={doc.userId}><SidebarOptions href={`/doc${doc.id}`} id={doc.id} key={doc.id}/></div>
+    ))}
+    </>
+    )
+  }
+
+  const RenderDocuments=()=>{
+    if(!groupedData.owner) return <div className="text-gray-500 font-semibold text-sm">No Document Foud</div> 
+    return <RenderDocumentList/>
+
+  }
   const menuOptions = (
     <>
       <NewDocumentBtn />
+      <div className='flex py-4 flex-col space-y-4 md:max-w-48'><RenderDocuments/></div>
     </>
   )
 
