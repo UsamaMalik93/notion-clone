@@ -1,12 +1,13 @@
 
 "use client"
 import { Button } from "@/components/ui/button";
+import { ArrowLeftCircle } from "lucide-react";
 
 export default function Home() {
   return (
-    <div>
-     <h1>Hello to notio clone app</h1>
-     <Button onClick={()=>{console.log('clicked')}}>Click me</Button>
-    </div>
+    <main className='flex space-x-2 items-center animate-pulse'>
+      <ArrowLeftCircle className="w-10 h-10"/>
+      <h1 className="font-bold">Get started with crteating a new document</h1>
+    </main>
   );
 }
