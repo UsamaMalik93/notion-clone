@@ -1,26 +1,22 @@
 "use client"
-
 import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from '@clerk/nextjs'
-import React from 'react'
 
 const Header = () => {
-  const {user}=useUser()
-  console.log("🚀 ~ Header ~ user:", user)
-  const RenderUserDetail=()=>{
+  const { user } = useUser()
+  const RenderUserDetail = () => {
     if (!user) return null;
     return <div>{user.username} {`'s`} Space</div>
   }
 
-
   return (
     <div className='flex items-center justify-between p-4 shadow-lg'>
-      <RenderUserDetail/>
+      <RenderUserDetail />
       <div>Home</div>
       <SignedOut>
-        <SignInButton/>
+        <SignInButton />
       </SignedOut>
       <SignedIn>
-        <UserButton/>
+        <UserButton />
       </SignedIn>
     </div>
   )
