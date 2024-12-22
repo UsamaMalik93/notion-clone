@@ -7,10 +7,9 @@ import { MoonIcon, SunIcon } from "lucide-react";
 import { BlockNoteView } from "@blocknote/shadcn";
 import { BlockNoteEditor } from "@blocknote/core";
 import { useCreateBlockNote } from "@blocknote/react";
+import { stringToColor } from "@/lib/string-to-color";
 import "@blocknote/shadcn/style.css";
 import "@blocknote/core/fonts/inter.css";
-import { useSelf } from "@liveblocks/react/suspense";
-import { stringToColor } from "@/lib/string-to-color";
 
 type EditorProps = {
   provider: LiveblocksYjsProvider;
@@ -19,9 +18,6 @@ type EditorProps = {
 };
 
 function BlockNote({ provider, doc, darkMode }: EditorProps) {
-  //   const userInfo = useSelf((me) => me.info);
-  //   console.log("🚀 ~ BlockNote ~ userInfo:", userInfo);
-
   const editor: BlockNoteEditor = useCreateBlockNote({
     collaboration: {
       provider,
